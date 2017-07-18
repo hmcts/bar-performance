@@ -1,6 +1,7 @@
 package com.developers.feesRegister.simulation
 
-import com.developers.feesRegister.util._
+import com.developers.feesRegister.util.DevEnvironment
+import com.developers.feesRegister.util.Headers
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 import scala.concurrent.duration._
@@ -13,7 +14,7 @@ import com.developers.feesRegister.scenarios.GetAppropriateFlatFeesForGivenFeeId
 
 class FeesRegisterSimulation extends Simulation {
 
-  val httpConf = http.baseURL(Environemnt.baseURL)
+  val httpConf = http.baseURL(DevEnvironment.baseURL)
                       .headers(Headers.commonHeader)
 
   val feesRegisterScenarios = List(
@@ -50,7 +51,7 @@ class FeesRegisterSimulation extends Simulation {
     GetAppropriateFeesAmountForGivenClaim.getAppropriateFeesAmountForGivenClaim.inject(
       atOnceUsers(1),rampUsersPerSec(1) to 100 during(300 seconds)
     ),
-    GetAppropriateFlatFeesForGivenFeeId.getAppropriateFlatFeesForGivenFeeId.inject(atOnceUsers(Environemnt.users.toInt))
+    GetAppropriateFlatFeesForGivenFeeId.getAppropriateFlatFeesForGivenFeeId.inject(atOnceUsers(DevEnvironment.users.toInt))
       .throttle(reachRps(600) in (20 seconds), holdFor(60 seconds))
   )
 
@@ -58,6 +59,6 @@ class FeesRegisterSimulation extends Simulation {
     .protocols(httpConf)
     .maxDuration(1 minutes)
     .assertions(
-      global.responseTime.max.lessThan(Environemnt.maxResponseTime.toInt)
+      global.responseTime.max.lessThan(DevEnvironment.maxResponseTime.toInt)
     )
 }
