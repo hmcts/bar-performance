@@ -19,7 +19,7 @@ lock('Fees Register API performance tests') {
                 rtMaven.tool = 'apache-maven-3.3.9'
                 rtMaven.run pom: 'pom.xml', goals: 'clean gatling:execute'
 
-                publishHTML(target: [
+                publishHTML([
                         allowMissing         : false,
                         alwaysLinkToLastBuild: false,
                         keepAll              : true,
