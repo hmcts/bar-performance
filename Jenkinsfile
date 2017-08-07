@@ -23,7 +23,7 @@ lock('Fees Register API performance tests') {
                         allowMissing         : false,
                         alwaysLinkToLastBuild: false,
                         keepAll              : true,
-                        reportDir            : "target/gatling/results/feesregistersimulation-*",
+                        reportDir            : 'target/gatling/results/',
                         reportFiles          : 'index.html',
                         reportName           : 'Performance Test Report'
                 ])
