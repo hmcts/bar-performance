@@ -19,11 +19,16 @@ lock('Fees Register API performance tests') {
                 rtMaven.tool = 'apache-maven-3.3.9'
                 rtMaven.run pom: 'pom.xml', goals: 'clean gatling:execute'
 
+								report_dir = "target/gatling/results/"
+
+								sh "mkdir $report_dir/gendir"
+								sh "mv $report_dir/feesregister*/* $report_dir/gendir/"
+
                 publishHTML([
                         allowMissing         : false,
                         alwaysLinkToLastBuild: false,
                         keepAll              : true,
-                        reportDir            : 'target/gatling/results/',
+                        reportDir            : "target/gatling/results/gendir/",
                         reportFiles          : 'index.html',
                         reportName           : 'Performance Test Report'
                 ])
