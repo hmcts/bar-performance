@@ -1,4 +1,4 @@
-package com.developers.feesRegister.scenarios
+package uk.gov.hmcts.feesregister.scenarios
 
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
@@ -6,7 +6,7 @@ import io.gatling.http.Predef._
 object GetAllFeesRegisterCategories {
 
   val getFeesRegisterByCategoriesIdHttp = http("get all FeesRegister Categories")
-    .get("/fees-register/categories")
+    .get("/categories")
     .check(status.is(200))
 
   val getAllFeesRegisterCategories = scenario("Get all FeesRegister Categories")
