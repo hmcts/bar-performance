@@ -1,16 +1,23 @@
-package com.developers.feesRegister.simulation
+package uk.gov.hmcts.feesregister.simulation
 
-import com.developers.feesRegister.util.DevEnvironment
-import com.developers.feesRegister.util.Headers
+import uk.gov.hmcts.feesregister.util.DevEnvironment
+import uk.gov.hmcts.feesregister.util.Headers
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
+
 import scala.concurrent.duration._
-import com.developers.feesRegister.scenarios.GetAllFeesRegister
-import com.developers.feesRegister.scenarios.GetFeesRegisterByCategoryId
-import com.developers.feesRegister.scenarios.GetAllFeesRegisterCategories
-import com.developers.feesRegister.scenarios.GetAllFlatFeesForGivenCategory
-import com.developers.feesRegister.scenarios.GetAppropriateFeesAmountForGivenClaim
-import com.developers.feesRegister.scenarios.GetAppropriateFlatFeesForGivenFeeId
+import uk.gov.hmcts.feesregister.scenarios.GetAllFeesRegister
+import uk.gov.hmcts.feesregister.scenarios.GetFeesRegisterByCategoryId
+import uk.gov.hmcts.feesregister.scenarios.GetAllFeesRegisterCategories
+import uk.gov.hmcts.feesregister.scenarios.GetAllFlatFeesForGivenCategory
+import uk.gov.hmcts.feesregister.scenarios.GetAppropriateFeesAmountForGivenClaim
+import uk.gov.hmcts.feesregister.scenarios.GetAppropriateFlatFeesForGivenFeeId
+import uk.gov.hmcts.feesregister.scenarios.GetAllRangeGroups
+import uk.gov.hmcts.feesregister.scenarios.GetCMCPaperUnspecified
+import uk.gov.hmcts.feesregister.scenarios.GetOneRangeGroup
+import uk.gov.hmcts.feesregister.scenarios.GetOneRangeGroupCalculations
+import uk.gov.hmcts.feesregister.scenarios._
+import uk.gov.hmcts.feesregister.util.{DevEnvironment, Headers}
 
 class FeesRegisterSimulation extends Simulation {
 
@@ -43,6 +50,22 @@ class FeesRegisterSimulation extends Simulation {
             atOnceUsers(1),
             rampUsersPerSec(1) to 100 during(300 seconds)
           ),
+    GetAllRangeGroups.getAllCategories.inject(
+      atOnceUsers(1),
+      rampUsersPerSec(1) to 100 during(300 seconds)
+    ),
+    GetCMCPaperUnspecified.getAllCategories.inject(
+      atOnceUsers(1),
+      rampUsersPerSec(1) to 100 during(300 seconds)
+    ),
+    GetOneRangeGroup.getAllCategories.inject(
+      atOnceUsers(1),
+      rampUsersPerSec(1) to 100 during(300 seconds)
+    ),
+    GetOneRangeGroupCalculations.getAllCategories.inject(
+      atOnceUsers(1),
+      rampUsersPerSec(1) to 100 during(300 seconds)
+    ),
     //GetAppropriateFlatFeesForGivenFeeId.getAppropriateFlatFeesForGivenFeeId.inject(
       //atOnceUsers(1),
       //rampUsersPerSec(1) to 100 during(300 seconds)

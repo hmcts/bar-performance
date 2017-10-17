@@ -2,7 +2,7 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.developers.perspective</groupId>
+	<groupId>uk.gov.hmcts.feesregister</groupId>
 	<artifactId>feeRegister-gatlingPerformance-tests</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
@@ -52,7 +52,7 @@
 							<goal>execute</goal>
 						</goals>
 						<configuration>
-							<simulationClass>com.developers.feesRegister.simulation.FeesRegisterSimulation</simulationClass>
+							<simulationClass>uk.gov.hmcts.feesregister.simulation.FeesRegisterSimulation</simulationClass>
 						</configuration>
 					</execution>
 				</executions>
