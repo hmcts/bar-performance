@@ -1,11 +1,11 @@
-package uk.gov.hmcts.feesregister.util
+package uk.gov.hmcts.paymentapp.util
 
 import java.util
 
 object DevEnvironment {
-  val baseURL = scala.util.Properties.envOrElse("baseURL", "https://test-proxy.fees-register.reform.hmcts.net")
-  val users = scala.util.Properties.envOrElse("numberOfUsers", "500")
-  val maxResponseTime = scala.util.Properties.envOrElse("maxResponseTime", "20000") // in milliseconds
-  val DevAIDAMS2S = scala.util.Properties.envOrElse("IDAMS2S", "http://betaDevBccidamAppLB.reform.hmcts.net:4552")
+  val baseURL = scala.util.Properties.envOrElse("baseURL", "https://bar-api-demo.service.core-compute-demo.internal")
+ // val users = scala.util.Properties.envOrElse("numberOfUsers", "1000")
+  //val maxResponseTime = scala.util.Properties.envOrElse("maxResponseTime", "6000") // in milliseconds
+ // val DevAIDAMS2S = scala.util.Properties.envOrElse("IDAMS2S", "http://localhost:8002")
 
 }

@@ -1,4 +1,4 @@
-package uk.gov.hmcts.feesregister.util
+package uk.gov.hmcts.paymentapp.util
 
 object Headers {
   val commonHeader = Map(

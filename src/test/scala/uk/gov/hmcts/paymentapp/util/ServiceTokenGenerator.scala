@@ -1,4 +1,4 @@
-package uk.gov.hmcts.feesregister.util
+/*package uk.gov.hmcts.paymentapp.util
 
 import java.util.Collections.singletonList
 
@@ -25,7 +25,7 @@ object ServiceTokenGenerator {
     headers.setAccept(singletonList(MediaType.ALL))
 
     val body = new LinkedMultiValueMap[String, String]
-    body.add("microservice", "cmc")
+    body.add("microservice", "probate_frontend")
     var token = restTemplate.postForObject(S2S_URL + "/testing-support/lease", new HttpEntity[MultiValueMap[String, String]](body, headers), classOf[String])
 
     print(s"generated : $token")
@@ -33,4 +33,4 @@ object ServiceTokenGenerator {
     return token
   }
 
-}
+}*/
