@@ -1,4 +1,4 @@
-/*package uk.gov.hmcts.paymentapp.scenarios
+package uk.gov.hmcts.paymentapp.scenarios
 
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
@@ -9,20 +9,21 @@ object PostCreateCardPayment {
  //var token = ServiceTokenGenerator.generateToken();
  //print("Token...." + token)
 
-  val bodyString = "{\"amount\": 420.99,\"description\": \"CMC Testing\",\"ccd_case_number\": \"312eqeqwe\",\"case_reference\": \"3213qeqewq\"" +
+  val bodyString = "{\"amount\": 420.99,\"description\": \"CMC Testing\",\"ccd_case_number\": \"prodtest\",\"case_reference\": \"3213qeqewq\"" +
    ", \"service\": \"CMC\", \"currency\": \"GBP\", \"site_id\": \"site123\"," +
    "\"fees\": [ {\"calculated_amount\": 100,\"code\": \"X0041\",\"version\": \"1\"}]}"
 
   val postUserHttp = http("post user")
     .post("/card-payments")
-    .header("Authorization", "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJwMmtvbmRwcHJvbGx2ODNhcHEybnFpdmc5ZCIsInN1YiI6IjU0MSIsImlhdCI6MTUyMTU1NTcwMSwiZXhwIjoxNTIxNTg0NTAxLCJkYXRhIjoiY2l0aXplbixkZWZlbmRhbnQsY2xhaW1hbnQsY21jLXByaXZhdGUtYmV0YSxsZXR0ZXItaG9sZGVyLGxldHRlci1ob2xkZXIsbGV0dGVyLWhvbGRlcixsZXR0ZXItaG9sZGVyLGxldHRlci03MzIsbGV0dGVyLTE1ODQzLGxldHRlci0yMzQ0MixsZXR0ZXItNTM2MDYsbGV0dGVyLWhvbGRlcixsZXR0ZXItNTM2MTQsY2l0aXplbi1sb2ExLGRlZmVuZGFudC1sb2ExLGNsYWltYW50LWxvYTEsY21jLXByaXZhdGUtYmV0YS1sb2ExLGxldHRlci1ob2xkZXItbG9hMSxsZXR0ZXItaG9sZGVyLWxvYTEsbGV0dGVyLWhvbGRlci1sb2ExLGxldHRlci1ob2xkZXItbG9hMSxsZXR0ZXItNzMyLWxvYTEsbGV0dGVyLTE1ODQzLWxvYTEsbGV0dGVyLTIzNDQyLWxvYTEsbGV0dGVyLTUzNjA2LWxvYTEsbGV0dGVyLWhvbGRlci1sb2ExLGxldHRlci01MzYxNC1sb2ExIiwidHlwZSI6IkFDQ0VTUyIsImlkIjoiNTQxIiwiZm9yZW5hbWUiOiJQcmFnbmVzaCIsInN1cm5hbWUiOiJQYXRlbCIsImRlZmF1bHQtc2VydmljZSI6IkNNQyIsImxvYSI6MSwiZGVmYXVsdC11cmwiOiJodHRwczovL3d3dy10ZXN0Lm1vbmV5Y2xhaW0ucmVmb3JtLmhtY3RzLm5ldC9yZWNlaXZlciIsImdyb3VwIjoiY21jLXByaXZhdGUtYmV0YSJ9.B-CXNYUGEKAul-D8aop6FWhkvhvhPjDsdHo1b7cD3vM")
-    .header("ServiceAuthorization", "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjbWMiLCJleHAiOjE1MjE1NzAxNjZ9.rUB7R4YLU9kYnOFOE_yHW3O7uZcOqEn-ftjZCnISpcmurZz0OWSOlreW-_UiCWxb_FqE2q5cIS_0QCkdmXozpg")
+    .header("Authorization", "eyJ0eXAiOiJKV1QiLCJ6aXAiOiJOT05FIiwia2lkIjoiaEgvakJ0TGhVUFlhMlBSWmg0eFBIOWJOS1lZPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJiYXJwZXJmZG0yQG1haWxuZXNpYS5jb20iLCJhdXRoX2xldmVsIjowLCJhdWRpdFRyYWNraW5nSWQiOiI4ZmZiZWI4Ny00MDA0LTQzY2YtODE2Yy05NTdhNTY5MmY3ZWUiLCJpc3MiOiJodHRwczovL2Zvcmdlcm9jay1hbS5zZXJ2aWNlLmNvcmUtY29tcHV0ZS1pZGFtLXBlcmZ0ZXN0LmludGVybmFsOjg0NDMvb3BlbmFtL29hdXRoMi9obWN0cyIsInRva2VuTmFtZSI6ImFjY2Vzc190b2tlbiIsInRva2VuX3R5cGUiOiJCZWFyZXIiLCJhdXRoR3JhbnRJZCI6IjhmNDVjYjJmLTc1MGMtNDhlOC1iNjM5LWY3ZTAyMGNjZjU5ZiIsImF1ZCI6ImJhcl9mcm9udGVuZCIsIm5iZiI6MTU2OTkyNjkyNywiZ3JhbnRfdHlwZSI6ImF1dGhvcml6YXRpb25fY29kZSIsInNjb3BlIjpbIm9wZW5pZCIsInByb2ZpbGUiLCJyb2xlcyJdLCJhdXRoX3RpbWUiOjE1Njk5MjY5MjYwMDAsInJlYWxtIjoiL2htY3RzIiwiZXhwIjoxNTY5OTU1NzI3LCJpYXQiOjE1Njk5MjY5MjcsImV4cGlyZXNfaW4iOjI4ODAwLCJqdGkiOiJlMzdiYzBmYS0yNTQ0LTRiOTctOWE4ZS01YzI4MWQyY2I5YzcifQ.iQBzvXScGbW3DAp1FLUhf3oflPK3bLTeHtt1WWTHE8T6QcTQEhjUYqO1_ELhvJ4ssSQ5oUj-ebM41WpSPnqYEk9hQaeRP16ts3GMiJtSCl-ApshCT8AZpqrq4L12StFnw5jgLgC6A5nh4GOVU4ga1OEfa00b70gFJjnVcRqZGr--ucz4BsFsfa7KTssxiG32CxXKQKws1Xb9iXofLnCGQdzqKkRykANTWpVA8KvKfVltK1eOJVFXDxZM00ovaEZzhiqbas8G-7XKYbb0elEsPpGJd8Ccf9v2nUUcLYxgdyRkpjlVJO8y8RWCdW5K7dXXpeAnMj-ikVfoIB8S8zjaKA")
+    .header("ServiceAuthorization", "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkaXZvcmNlX2Zyb250ZW5kIiwiZXhwIjoxNTY5OTQzNjY3fQ.z8MySib7Tq5uEuxLJ5Eal-FlHm9QOxOdk8PvxG2FgaAcCqOoI_YCSrdxyzMd9ZKrUIiQjbXioV3G0T8C6lHRdA")
     .header("return-url", "https://localhost")
     .body(StringBody(bodyString))
     .header("Content-Type", "application/json")
     .check(status is 201)
 
-  val postUser = scenario("post user").during(5 minutes) {
+  val postUser = scenario("post user").during(60 minutes) {
     exec(postUserHttp)
   }
-}*/
+}
+
